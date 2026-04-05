@@ -1,0 +1,98 @@
+openapi: 3.1.0
+info:
+  title: Open-Meteo Forecast API (subset)
+  description: Упрощённая спецификация для api.open-meteo.com — текущая погода
+  version: 1.0.0
+servers:
+  - url: https://api.open-meteo.com
+tags:
+  - name: OpenMeteo
+paths:
+  /v1/forecast:
+    get:
+      tags:
+        - OpenMeteo
+      operationId: getForecast
+      summary: Прогноз и текущая погода
+      parameters:
+        - name: latitude
+          in: query
+          required: true
+          schema:
+            type: number
+            format: double
+        - name: longitude
+          in: query
+          required: true
+          schema:
+            type: number
+            format: double
+        - name: current_weather
+          in: query
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForecastResponse'
+
+components:
+  schemas:
+    ForecastResponse:
+      type: object
+      required:
+        - latitude
+        - longitude
+        - current_weather
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        elevation:
+          type: number
+          format: double
+        generationtime_ms:
+          type: number
+          format: double
+        utc_offset_seconds:
+          type: integer
+          format: int32
+        timezone:
+          type: string
+        timezone_abbreviation:
+          type: string
+        current_weather:
+          $ref: '#/components/schemas/CurrentWeather'
+    CurrentWeather:
+      type: object
+      required:
+        - temperature
+        - windspeed
+        - winddirection
+        - weathercode
+        - time
+      properties:
+        temperature:
+          type: number
+          format: double
+        windspeed:
+          type: number
+          format: double
+        winddirection:
+          type: number
+          format: double
+        weathercode:
+          type: integer
+          format: int32
+        time:
+          type: string
+        is_day:
+          type: integer
+          format: int32

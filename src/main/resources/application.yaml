@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: exchange
+
+weather:
+  client:
+    base-url: https://api.open-meteo.com

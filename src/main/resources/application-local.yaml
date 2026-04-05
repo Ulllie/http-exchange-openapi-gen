@@ -1,0 +1,9 @@
+# Профиль local: приложение ходит в WireMock из sandbox/docker-compose.yml
+# Запуск: docker compose -f sandbox/docker-compose.yml up -d
+# Spring:  SPRING_PROFILES_ACTIVE=local  (или --spring.profiles.active=local)
+# Для WebClient + WireMock:  SPRING_PROFILES_ACTIVE=webclient,local
+# (профиль local подключает HTTP/1.1 для RestClient и WebClient — см. LocalHttp11ClientSupportConfig)
+
+weather:
+  client:
+    base-url: http://localhost:8089

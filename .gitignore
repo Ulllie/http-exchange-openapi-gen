@@ -126,8 +126,4 @@ fabric.properties
 .idea/
 *.iml
 *.ipr
-*.iws
-
-# Build output directories created by IDEs
-out/
 

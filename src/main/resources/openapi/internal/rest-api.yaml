@@ -1,0 +1,63 @@
+openapi: 3.1.0
+info:
+  title: Exchange Weather API
+  description: Внутренний REST API — прокси к Open-Meteo через сгенерированный HttpExchange клиент
+  version: 1.0.0
+tags:
+  - name: InternalWeather
+paths:
+  /api/weather:
+    get:
+      tags:
+        - InternalWeather
+      operationId: getAggregatedWeather
+      summary: Текущая погода по координатам
+      parameters:
+        - name: latitude
+          in: query
+          required: true
+          schema:
+            type: number
+            format: double
+        - name: longitude
+          in: query
+          required: true
+          schema:
+            type: number
+            format: double
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WeatherResponse'
+
+components:
+  schemas:
+    WeatherResponse:
+      type: object
+      required:
+        - latitude
+        - longitude
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        temperatureCelsius:
+          type: number
+          format: double
+        windSpeedKmh:
+          type: number
+          format: double
+        windDirectionDeg:
+          type: number
+          format: double
+        weatherCode:
+          type: integer
+          format: int32
+        observedAt:
+          type: string
