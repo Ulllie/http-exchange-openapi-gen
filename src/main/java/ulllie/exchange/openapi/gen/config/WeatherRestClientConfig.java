@@ -1,12 +1,10 @@
 package ulllie.exchange.openapi.gen.config;
 
 import java.util.Optional;
-
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.support.RestClientHttpServiceGroupConfigurer;
-import org.springframework.web.service.registry.HttpServiceGroupConfigurer.Groups;
 import org.springframework.web.service.registry.ImportHttpServices;
 import ulllie.exchange.openapi.gen.client.api.OpenMeteoApi;
 

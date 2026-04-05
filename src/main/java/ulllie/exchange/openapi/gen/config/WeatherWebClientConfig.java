@@ -1,12 +1,11 @@
 package ulllie.exchange.openapi.gen.config;
 
 import java.util.Optional;
-
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.support.WebClientHttpServiceGroupConfigurer;
-import org.springframework.web.service.registry.HttpServiceGroupConfigurer.Groups;
+import org.springframework.web.service.registry.HttpServiceGroup;
 import org.springframework.web.service.registry.ImportHttpServices;
 import ulllie.exchange.openapi.gen.client.api.OpenMeteoApi;
 
@@ -16,7 +15,7 @@ import ulllie.exchange.openapi.gen.client.api.OpenMeteoApi;
  */
 @Configuration
 @Profile("webclient")
-@ImportHttpServices(group = "weather", types = OpenMeteoApi.class)
+@ImportHttpServices(group = "weather", types = OpenMeteoApi.class, clientType = HttpServiceGroup.ClientType.WEB_CLIENT)
 public class WeatherWebClientConfig implements WebClientHttpServiceGroupConfigurer {
 
     private final WeatherClientProperties weatherClientProperties;
